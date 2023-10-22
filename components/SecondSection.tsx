@@ -26,18 +26,18 @@ function Left() {
           </div>
           <div className=" flex flex-col w-full justify-between">
             <p className=" font-display italic text-9xl border-b-1 border-muted-foreground mb-8">
-              links
+              Links
             </p>
             <div className=" border-b-1 border-muted-foreground py-[0.5rem]">
               <p className=" text-muted-foreground italic">Showcase/</p>
               <p className="font-display text-5xl hover:italic hover:underline cursor-pointer">
-                ethGlobal
+                EthGlobal
               </p>
             </div>
             <div className=" border-b-1 border-muted-foreground py-[0.5rem]">
               <p className=" text-muted-foreground italic">Repo/</p>
               <p className="font-display text-5xl hover:italic hover:underline transition cursor-pointer">
-                <a href="https://github.com/Trymbakmahant/SafeScan">gitHub</a>
+                <a href="https://github.com/Trymbakmahant/SafeScan">GitHub </a>
               </p>
             </div>
           </div>
@@ -53,7 +53,7 @@ function Right() {
       <div className=" w-full h-full p-4 flex flex-col justify-between items-end">
         <div className=" w-full flex justify-between">
           <p className=" text-muted-foreground italic">03/</p>
-          <p className="">Made using</p>
+          <p className="">Made using Safe and Mask</p>
         </div>
         <div className="relative w-full h-full flex items-center">
           <div className=" absolute logo-sec left-[60%] w-44 h-44 rotate-12">
@@ -80,9 +80,8 @@ function Right() {
           </div>
         </div>
         <p className=" w-[40%] text-end text-xl ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, unde?
-          Enim velit molestias est! Suscipit ea ad velit ipsa ipsam expedita,
-          minima nisi corrupti recusandae quo maxime omnis. Voluptas, quo!
+          Here we are using safe core sdk for creating safe scan and relation
+          service of mask for getting the twitter , github and many more.
         </p>
       </div>
       <div className=" absolute inset-0 rounded-lg z-[-1]">
@@ -96,7 +95,7 @@ function Right() {
       </div>
       <div className="clip-frame-left bg-background pt-2 pl-2">
         <div className=" cursor-pointer hover:italic w-full h-full flex gap-4 items-center justify-center italic rounded-md">
-          <p>ethGlobal2023</p>
+          <p>EthGlobal2023</p>
           <FiArrowUpRight />
         </div>
       </div>
