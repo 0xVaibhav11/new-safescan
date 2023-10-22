@@ -1,0 +1,10 @@
+.main {
+  margin: auto;
+  margin-top: 50px;
+  height: auto;
+  padding: 0px 100px 0px 100px;
+  gap: 12px;
+  @media screen and (min-width: 1600px) {
+    padding: 0px 350px 0px 350px;
+  }
+}
