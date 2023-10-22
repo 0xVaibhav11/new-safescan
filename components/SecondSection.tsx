@@ -53,7 +53,7 @@ function Right() {
       <div className=" w-full h-full p-4 flex flex-col justify-between items-end">
         <div className=" w-full flex justify-between">
           <p className=" text-muted-foreground italic">03/</p>
-          <p className="">made using</p>
+          <p className="">Made using</p>
         </div>
         <div className="relative w-full h-full flex items-center">
           <div className=" absolute logo-sec left-[60%] w-44 h-44 rotate-12">

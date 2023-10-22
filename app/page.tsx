@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <main className=" w-full min-h-screen px-[1rem]">
-      <Apitesting />
+      {/* <Apitesting /> */}
       <div className=" w-full h-max">
         <Navbar />
         <Header />
