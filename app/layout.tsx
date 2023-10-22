@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import localFont from "next/font/local";
-
+import { MyContextProvider } from "@/context/AppContext";
 const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const display = localFont({
   src: "../assets/fonts/DisplayPixel.woff2",
@@ -33,7 +33,9 @@ export default function RootLayout({
       <body
         className={`${sans.variable} ${display.variable} ${body.variable} font-sans max-w-screen `}
       >
-        <Providers>{children}</Providers>
+        <MyContextProvider>
+          <Providers>{children}</Providers>
+        </MyContextProvider>
       </body>
     </html>
   );
