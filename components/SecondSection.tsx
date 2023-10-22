@@ -81,7 +81,7 @@ function Right() {
         </div>
         <p className=" w-[40%] text-end text-xl ">
           Here we are using safe core sdk for creating safe scan and relation
-          service of mask for getting the twitter , github and many more.
+          service of mask for getting the nextIds and many more.
         </p>
       </div>
       <div className=" absolute inset-0 rounded-lg z-[-1]">

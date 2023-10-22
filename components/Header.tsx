@@ -15,9 +15,9 @@ function Right() {
           </div>
           <p className=" w-3/4 text-end">
             Wellcome to safe world this is only one safe scan where you can get
-            all information about you safe account's here we are using safe sdk
-            for getting .. and mask for getting the data if they have an ENS or
-            an address
+            all information about you safe account&apos;s here we are using safe
+            sdk for getting .. and mask for getting the data if they have an ENS
+            or an address
           </p>
         </div>
 
@@ -56,7 +56,7 @@ function HeroText() {
       className=" w-full py-8 h-max  flex flex-col items-start justify-center gap-4"
     >
       <div className="font-body pl-4 flex w-1/2 justify-between items-center">
-        <p>Here's the</p>
+        <p>Here&apos;s the</p>
         <div className=" text-center text-muted-foreground">
           <p> / Optimized and web3 community based,</p>
           <p>on all chains!</p>

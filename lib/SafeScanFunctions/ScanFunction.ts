@@ -3,13 +3,13 @@ import axios from "axios";
 export async function ScanApi(scanLink: string, ApiKey: string) {
   const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
   const action = "txlist"; // For normal transactions
-  const module = "account";
+  const modul = "account";
   const startBlock = "0"; // Start from block 0
   const endBlock = "latest"; // Up to the latest block
   axios
     .get(scanLink, {
       params: {
-        module,
+        modul,
         action,
         address,
         startblock: startBlock,
