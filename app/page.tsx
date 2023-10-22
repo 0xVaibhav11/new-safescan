@@ -1,19 +1,27 @@
 "use client";
+import React, { useEffect } from "react";
 import Image from "next/image";
-import { useQuery } from "@apollo/client";
-import { GET_NEXTID_INFO } from "@/graphql/queries";
-import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 
 export default function Home() {
-  const { loading, error, data } = useQuery(GET_NEXTID_INFO);
-
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    const lenis = new Lenis();
 
+    function raf(time: any) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      open console to see the result
+    <main className=" w-full min-h-screen px-[1rem]">
+      <div className=" w-full h-full">
+        <Navbar />
+        <Header />
+      </div>
     </main>
   );
 }

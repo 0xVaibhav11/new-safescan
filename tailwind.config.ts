@@ -18,8 +18,8 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
-        display: ["var(--font-display)", "var(--font-sans)"],
-        body: ["var(--font-body)", "var(--font-sans)"],
+        display: ["var(--font-display)"],
+        body: ["var(--font-body)"],
       },
       colors: {
         border: "hsl(var(--border))",

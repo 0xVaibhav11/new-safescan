@@ -2,8 +2,21 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "@/components/Providers";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const display = localFont({
+  src: "../assets/fonts/DisplayPixel.woff2",
+  variable: "--font-display",
+  display: "swap",
+  preload: true,
+});
+const body = localFont({
+  src: "../assets/fonts/GTWalsheimPro.woff2",
+  variable: "--font-body",
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,10 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <Providers>
-        <body className={inter.className}>{children}</body>
-      </Providers>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${sans.variable} ${display.variable} ${body.variable} font-sans max-w-screen `}
+      >
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
