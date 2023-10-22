@@ -21,7 +21,7 @@ import { FiArrowDown } from "react-icons/fi";
 import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { RiFileList3Fill } from "react-icons/ri";
 import { useMyContext } from "@/context/AppContext";
-
+import { DataThroughAddress } from "@/lib/MaskNetwork-Api/RelationshipServiceUseingWeb3Bio";
 function shortenAddress(address: string | undefined, chars: 13 | 20) {
   // 0x6ebbb366bc7542eeee...5683
   if (!address) return null;
@@ -51,7 +51,7 @@ interface Item {
   value: "0";
 }
 type DataRowProps = {
-  userAddress: string | undefined;
+  userAddress: string;
   txnHash: string | undefined;
   action: string;
   time: string;
@@ -68,6 +68,7 @@ export function DataRow({
   fees,
   key,
 }: DataRowProps) {
+  const data = DataThroughAddress(userAddress);
   // async function DataApi() {
   //   const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
   //   const action = "txlist"; // For normal transactions

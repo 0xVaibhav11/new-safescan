@@ -1,0 +1,45 @@
+query identity($platform: String, $identity: String) {
+  uuid
+  platform
+  identity
+  displayName
+  createdAt
+  addedAt
+  updatedAt
+  # Here we perform a 3-depth deep search for this identity's "neighbor".
+  neighborWithTraversal(depth: 5) {
+    # neighbor returns is EdgeUnion, your should define every type of EdgeUnion's fields
+    ... on ProofRecord {
+      __typename
+      source # Which upstream provides this connection info.
+      from {
+        uuid
+        platform
+        identity
+        displayName
+      }
+      to {
+        uuid
+        platform
+        identity
+        displayName
+      }
+    }
+    ... on HoldRecord {
+      __typename
+      source
+      from {
+        uuid
+        platform
+        identity
+        displayName
+      }
+      to {
+        uuid
+        platform
+        identity
+        displayName
+      }
+    }
+  }
+}
