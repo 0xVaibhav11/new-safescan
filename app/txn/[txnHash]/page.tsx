@@ -1,5 +1,5 @@
 import React from "react";
-
+import { fetchTransactionDetails } from "./fetchTransaction";
 export default function Txn({
   params: { txnHash },
 }: {
