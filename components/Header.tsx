@@ -14,8 +14,9 @@ function Right() {
             <p className="">About Us</p>
           </div>
           <p className=" w-3/4 text-end">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-            assumenda dolor voluptas quaerat, praesentium libero?
+            Wellcome to safe world here you can get all information about you
+            safe account's here we are using safe sdk for getting .. and mask
+            for getting the data if they have an ENS or an address
           </p>
         </div>
 

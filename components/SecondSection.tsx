@@ -1,4 +1,5 @@
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { Link } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { FiArrowUpRight, FiChevronDown } from "react-icons/fi";
@@ -36,7 +37,7 @@ function Left() {
             <div className=" border-b-1 border-muted-foreground py-[0.5rem]">
               <p className=" text-muted-foreground italic">Repo/</p>
               <p className="font-display text-5xl hover:italic hover:underline transition cursor-pointer">
-                gitHub
+                <a href="https://github.com/Trymbakmahant/SafeScan">gitHub</a>
               </p>
             </div>
           </div>
