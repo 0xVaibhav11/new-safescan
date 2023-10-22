@@ -8,7 +8,7 @@ import SecondSection from "@/components/SecondSection";
 import useNextid from "@/lib/hooks/use-nextid-relation-service";
 import { useQuery } from "@apollo/client";
 import { GET_NEXTID_INFO } from "@/graphql/queries";
-
+import Apitesting from "@/testing/apitesting";
 export default function Home() {
   const { data, loading } = useQuery(GET_NEXTID_INFO, {
     variables: {
@@ -35,6 +35,7 @@ export default function Home() {
 
   return (
     <main className=" w-full min-h-screen px-[1rem]">
+      <Apitesting />
       <div className=" w-full h-max">
         <Navbar />
         <Header />

@@ -143,7 +143,7 @@ export async function getDataWithTransactionHash(
 
 // return all the information about the safe
 export async function getSafeInfo(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
