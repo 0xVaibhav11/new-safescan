@@ -10,10 +10,7 @@ import Dotbit from "./Dotbit";
 import SafePage from "./SafeAddress";
 import Ens from "./Ens";
 import Twitter from "./Twitter";
-export function getSignerFromPrivateKey(
-  privateKey: string,
-  rpcUrl: string
-): Signer {
+export function getSignerFromPrivateKey(privateKey: string, rpcUrl: string) {
   const provider = new providers.JsonRpcProvider(rpcUrl);
   const wallet = new Wallet(privateKey, provider);
   return wallet;
@@ -34,10 +31,12 @@ export default function Txn({
   });
   const id = identity;
   const { currentIndex, setCurrentIndex, privateKey } = useMyContext();
-  const signer = getSignerFromPrivateKey(
+
+  const signer: Signer = getSignerFromPrivateKey(
     "b2dfd42d32e7edf1a74fe0b3fa07d2773d6b0145a19553a770d91a80333a8c39",
     options[6].ProviderLink
   );
+
   async function IdentityFUnction() {
     try {
       if (identity.length == 42) {
