@@ -35,7 +35,7 @@ export default function Navbar() {
         {/* "0xfbfb3fb72b2a59e8bca2f88d1e13293cbd98d10fb4ccaea25be8d61d1b65c9d4" */}
         <Input
           type="email"
-          placeholder="Search by address / Txn hash / @username / web3 username"
+          placeholder="Search by address / Txn hash / @twitter / web3 identity"
           onKeyDown={handleSearch}
           onChange={(e) => setSearch(e.target.value)}
           startContent={

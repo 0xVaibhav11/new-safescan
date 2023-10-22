@@ -10,12 +10,6 @@ import { useQuery } from "@apollo/client";
 import { GET_NEXTID_INFO } from "@/graphql/queries";
 import Apitesting from "@/testing/apitesting";
 export default function Home() {
-  const { data, loading } = useQuery(GET_NEXTID_INFO, {
-    variables: {
-      platform: "twitter",
-      identity: "suji_yan",
-    },
-  });
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -26,12 +20,6 @@ export default function Home() {
 
     requestAnimationFrame(raf);
   }, []);
-
-  useEffect(() => {
-    if (loading) return;
-
-    console.log("data", data);
-  }, [data, loading]);
 
   return (
     <main className=" w-full min-h-screen px-[1rem]">

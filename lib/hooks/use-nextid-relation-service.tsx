@@ -7,6 +7,21 @@ type NextidInfo = {
   platform: string;
   identity: string;
 };
+type NextidNeighbor = {
+  displayName: string;
+  identity: string;
+  platform: string;
+  uuid: string;
+};
+type NextidData = {
+  identity: {
+    displayName: string;
+    identity: string;
+  };
+  neighbor: NextidNeighbor[];
+  platform: string;
+  uuid: string;
+};
 
 export default function useNextid({ platform, identity }: NextidInfo) {
   const { data, loading, error } = useQuery(GET_NEXTID_INFO, {
@@ -15,12 +30,6 @@ export default function useNextid({ platform, identity }: NextidInfo) {
       identity: identity,
     },
   });
-
-  useEffect(() => {
-    if (data) {
-      console.log("data", data);
-    }
-  }, [data]);
 
   return {
     data,
