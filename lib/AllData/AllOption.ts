@@ -62,7 +62,7 @@ export const options: ToggleOption[] = [
     label: "Gorali",
     value: 5,
     SafeTxService: "https://safe-transaction-goerli.safe.global/",
-    ProviderLink: "https://rpc.ankr.com/eth_goerli",
+    ProviderLink: "https://ethereum-goerli.publicnode.com",
     ScanLink: "https://api-goerli.etherscan.io/api",
     ApiKey: process.env.NEXT_PUBLIC_Goerli,
   },
