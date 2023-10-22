@@ -2,6 +2,7 @@ import { Pagination } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
 import { FiChevronDown } from "react-icons/fi";
+import AccountCreation from "@/components/RecentAcountCreation/page";
 
 function Right() {
   return (
@@ -40,7 +41,8 @@ function Right() {
 
 function Left() {
   return (
-    <div id="left" className=" w-[70%] h-[100vh] bg-red-700">
+    <div id="left" className=" w-[70%] h-[100vh] bg-black-700">
+      <AccountCreation />
       <Pagination
         loop
         showControls
