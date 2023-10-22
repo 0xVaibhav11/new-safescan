@@ -90,12 +90,12 @@ export default function LatestCreationFeed() {
   return (
     <div className=" w-full h-full">
       <Tabs defaultValue="Etherum" className="w-full">
-        <TabsList className="w-full flex">
+        <TabsList className=" flex w-full overflow-x-scroll no-scrollbar">
           {options.map((option) => {
             return (
               <TabsTrigger
                 key={option.value}
-                className=" w-full"
+                className=" flex-grow"
                 value={option.label}
               >
                 {option.label}

@@ -19,7 +19,7 @@ export default function Navbar() {
     }
   };
   return (
-    <div className=" w-full h-[10%] py-4 border-t-1 border-b-1 border-y-muted-foreground font-display flex items-center justify-between bg-[rgb(9,9,11,0.1)] backdrop-blur-lg">
+    <div className=" w-full h-[10%] py-2 border-t-1 border-b-1 border-y-muted-foreground font-display flex items-center justify-between bg-[rgb(9,9,11,0.1)] backdrop-blur-lg">
       <div className=" w-44">
         <AspectRatio ratio={518 / 120}>
           <Image
