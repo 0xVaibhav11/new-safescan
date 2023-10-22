@@ -2,7 +2,7 @@ import { Pagination } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
 import { FiChevronDown } from "react-icons/fi";
-import AccountCreation from "@/components/RecentAcountCreation/page";
+import LatestCreationFeed from "./LatestCreationFeed";
 
 function Right() {
   return (
@@ -41,16 +41,8 @@ function Right() {
 
 function Left() {
   return (
-    <div id="left" className=" w-[70%] h-[100vh] bg-black-700">
-      <AccountCreation />
-      <Pagination
-        loop
-        showControls
-        isCompact
-        color="primary"
-        total={5}
-        initialPage={1}
-      />
+    <div id="left" className=" w-[70%] min-h-[100vh] bg-black-700">
+      <LatestCreationFeed />
     </div>
   );
 }

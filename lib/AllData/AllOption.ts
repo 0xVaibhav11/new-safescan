@@ -11,7 +11,7 @@ interface ToggleOption {
 
 export const options: ToggleOption[] = [
   {
-    label: "ehterum",
+    label: "Etherum",
     value: 1,
     SafeTxService: "https://safe-transaction-mainnet.safe.global/",
     ProviderLink: "https://rpc.mevblocker.io",
@@ -19,7 +19,7 @@ export const options: ToggleOption[] = [
     ApiKey: process.env.NEXT_PUBLIC_Eth_Main,
   },
   {
-    label: "genosis chain",
+    label: "Gnosis chain",
     value: 100,
     SafeTxService: "https://safe-transaction-gnosis-chain.safe.global/",
     ProviderLink: "https://rpc.gnosischain.com",
@@ -27,7 +27,7 @@ export const options: ToggleOption[] = [
     ApiKey: process.env.NEXT_PUBLIC_Genosis_main,
   },
   {
-    label: "polygon",
+    label: "Polygon",
     value: 137,
     SafeTxService: "https://safe-transaction-polygon.safe.global/",
     ProviderLink: "https://polygon.meowrpc.com",
