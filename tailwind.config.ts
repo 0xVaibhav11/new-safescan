@@ -77,5 +77,22 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [
+    require("tailwindcss-animate"),
+    nextui({
+      prefix: "vars",
+      layout: {
+        borderWidth: {
+          small: "1px",
+          medium: "1px",
+          large: "1px",
+        },
+        radius: {
+          small: "calc(var(--radius) - 4px)",
+          medium: "calc(var(--radius) - 2px)",
+          large: "var(--radius)",
+        },
+      },
+    }),
+  ],
 };
