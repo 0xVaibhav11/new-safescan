@@ -57,6 +57,7 @@ type DataRowProps = {
   time: string;
   block: string;
   fees: string;
+  key: any;
 };
 export function DataRow({
   userAddress,
@@ -65,17 +66,18 @@ export function DataRow({
   time,
   block,
   fees,
+  key,
 }: DataRowProps) {
   // async function DataApi() {
   //   const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
   //   const action = "txlist"; // For normal transactions
-  //   const module = "account";
+  //   const modul = "account";
   //   const startBlock = "0"; // Start from block 0
   //   const endBlock = "latest"; // Up to the latest block
   //   axios
   //     .get(options[currentIndex].ScanLink, {
   //       params: {
-  //         module,
+  //         modul,
   //         action,
   //         address,
   //         startblock: startBlock,
@@ -99,6 +101,7 @@ export function DataRow({
     <div
       id="row"
       className=" w-full h-max p-4 flex justify-between items-center"
+      key={key}
     >
       {" "}
       <div id="txnColumn" className="w-[45%] flex flex-col gap-2">
@@ -178,13 +181,13 @@ export default function LatestCreationFeed() {
   async function DataApi() {
     const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
     const action = "txlist"; // For normal transactions
-    const module = "account";
+    const modul = "account";
     const startBlock = "latest - 100"; // Start from block 0
     const endBlock = "latest"; // Up to the latest block
     axios
       .get(options[currentIndex].ScanLink, {
         params: {
-          module,
+          modul,
           action,
           address,
           startblock: startBlock,
@@ -234,9 +237,10 @@ export default function LatestCreationFeed() {
         <TabsContent value={options[currentIndex].label}>
           {flag && (
             <div className="w-full min-h-[100vh]   flex flex-col">
-              {itemTOshow.map((items) => {
+              {itemTOshow.map((items, key) => {
                 return (
                   <DataRow
+                    key={key}
                     userAddress={items.from}
                     txnHash={items.hash}
                     block={items.blockNumber}
