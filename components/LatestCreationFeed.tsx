@@ -238,19 +238,20 @@ export default function LatestCreationFeed() {
         <TabsContent value={options[currentIndex].label}>
           {flag && (
             <div className="w-full min-h-[100vh]   flex flex-col">
-              {itemTOshow.map((items, key) => {
-                return (
-                  <DataRow
-                    key={key}
-                    userAddress={items.from}
-                    txnHash={items.hash}
-                    block={items.blockNumber}
-                    fees={items.gas}
-                    time={items.timeStamp}
-                    action={items.functionName.slice(0, 15)}
-                  />
-                );
-              })}
+              {Array.isArray(itemTOshow) &&
+                itemTOshow.map((items, key) => {
+                  return (
+                    <DataRow
+                      key={key}
+                      userAddress={items.from}
+                      txnHash={items.hash}
+                      block={items.blockNumber}
+                      fees={items.gas}
+                      time={items.timeStamp}
+                      action={items.functionName.slice(0, 15)}
+                    />
+                  );
+                })}
             </div>
           )}
         </TabsContent>

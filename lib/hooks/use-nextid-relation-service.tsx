@@ -23,7 +23,7 @@ type NextidData = {
   uuid: string;
 };
 
-export default function useNextid({ platform, identity }: NextidInfo) {
+export function useNextid({ platform, identity }: NextidInfo) {
   const { data, loading, error } = useQuery(GET_NEXTID_INFO, {
     variables: {
       platform: platform,

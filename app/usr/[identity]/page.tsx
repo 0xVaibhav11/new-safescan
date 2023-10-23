@@ -10,6 +10,7 @@ import Dotbit from "./Dotbit";
 import SafePage from "./SafeAddress";
 import Ens from "./Ens";
 import Twitter from "./Twitter";
+import Userpage from "./Userpage";
 export function getSignerFromPrivateKey(privateKey: string, rpcUrl: string) {
   const provider = new providers.JsonRpcProvider(rpcUrl);
   const wallet = new Wallet(privateKey, provider);
@@ -50,7 +51,7 @@ export default function Txn({
         }));
         console.log("lens");
       } else if (
-        identity.slice(identity.length - 3, identity.length) == "ens"
+        identity.slice(identity.length - 3, identity.length) == "eth"
       ) {
         console.log("ens");
         setFlagdata((prevState) => ({
@@ -102,32 +103,32 @@ export default function Txn({
     <div className=" w-screen h-screen flex items-center justify-center text-xl ">
       {flagdata.bit && (
         <>
-          <Dotbit id={identity} />
+          <Userpage id={identity} platform="dotbit" />
         </>
       )}
       {flagdata.ens && (
         <>
-          <Ens id={identity} />
+          <Userpage id={identity} platform="ens" />
         </>
       )}
       {flagdata.twitter && (
         <>
-          <Twitter id={identity} />
+          <Userpage id={identity} platform="twitter" />
         </>
       )}
       {flagdata.lens && (
         <>
-          <Lens id={identity} />
+          <Userpage id={identity} platform="lens" />
         </>
       )}
       {flagdata.eao && (
         <>
-          <AddressPage id={identity} />
+          <Userpage id={identity} platform="eoa" />
         </>
       )}
       {flagdata.safe && (
         <>
-          <SafePage id={identity} />
+          <Userpage id={identity} platform="safe" />
         </>
       )}
     </div>
