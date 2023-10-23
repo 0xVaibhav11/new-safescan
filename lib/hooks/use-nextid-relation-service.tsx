@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { GET_NEXTID_INFO } from "@/graphql/queries";
 
@@ -7,7 +7,7 @@ type NextidInfo = {
   platform: string;
   identity: string;
 };
-type NextidNeighbor = {
+export type NextidNeighbor = {
   displayName: string;
   identity: string;
   platform: string;
@@ -24,6 +24,8 @@ type NextidData = {
 };
 
 export function useNextid({ platform, identity }: NextidInfo) {
+  const [otherAcc, setOtherAcc] = useState([]);
+  const [accReady, setAccReady] = useState<boolean>(); // [twitter, ens, farcaster, lens, github
   const { data, loading, error } = useQuery(GET_NEXTID_INFO, {
     variables: {
       platform: platform,
@@ -31,9 +33,19 @@ export function useNextid({ platform, identity }: NextidInfo) {
     },
   });
 
+  useEffect(() => {
+    if (loading) return;
+    if (!data.identity.neighbor) {
+      setOtherAcc(data.identity.neighbor);
+      setAccReady(true);
+    }
+  }, [data, loading]);
+
   return {
     data,
     loading,
     error,
+    otherAcc,
+    accReady,
   };
 }

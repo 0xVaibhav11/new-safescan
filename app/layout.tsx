@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sans.variable} ${display.variable} ${body.variable} font-sans max-w-screen `}
+        className={`${sans.variable} ${display.variable} ${body.variable} font-body max-w-screen `}
       >
         <MyContextProvider>
           <Providers>{children}</Providers>

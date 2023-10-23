@@ -3,19 +3,12 @@ import React, { useContext, useState } from "react";
 import { options } from "@/lib/AllData/AllOption";
 import { useMyContext } from "@/context/AppContext";
 import { getSafeInfo } from "@/lib/safe-utils/safeApp";
-import { Wallet, providers, Signer } from "ethers";
-import AddressPage from "./Address";
-import Lens from "./lens";
-import Dotbit from "./Dotbit";
-import SafePage from "./SafeAddress";
-import Ens from "./Ens";
-import Twitter from "./Twitter";
+import {
+  WalletType,
+  getSignerFromPrivateKey,
+  SignerType as Signer,
+} from "@/lib/utils";
 import Userpage from "./Userpage";
-export function getSignerFromPrivateKey(privateKey: string, rpcUrl: string) {
-  const provider = new providers.JsonRpcProvider(rpcUrl);
-  const wallet = new Wallet(privateKey, provider);
-  return wallet;
-}
 
 export default function Txn({
   params: { identity },
@@ -99,38 +92,19 @@ export default function Txn({
     IdentityFUnction();
   }, []);
 
-  return (
-    <div className=" w-screen h-screen flex items-center justify-center text-xl ">
-      {flagdata.bit && (
-        <>
-          <Userpage id={identity} platform="dotbit" />
-        </>
-      )}
-      {flagdata.ens && (
-        <>
-          <Userpage id={identity} platform="ens" />
-        </>
-      )}
-      {flagdata.twitter && (
-        <>
-          <Userpage id={identity} platform="twitter" />
-        </>
-      )}
-      {flagdata.lens && (
-        <>
-          <Userpage id={identity} platform="lens" />
-        </>
-      )}
-      {flagdata.eao && (
-        <>
-          <Userpage id={identity} platform="eoa" />
-        </>
-      )}
-      {flagdata.safe && (
-        <>
-          <Userpage id={identity} platform="safe" />
-        </>
-      )}
-    </div>
-  );
+  if (flagdata.bit) {
+    return <Userpage id={identity} platform="dotbit" />;
+  } else if (flagdata.ens) {
+    return <Userpage id={identity} platform="ens" />;
+  } else if (flagdata.twitter) {
+    return <Userpage id={identity} platform="twitter" />;
+  } else if (flagdata.lens) {
+    return <Userpage id={identity} platform="lens" />;
+  } else if (flagdata.eao) {
+    return <Userpage id={identity} platform="eoa" />;
+  } else if (flagdata.safe) {
+    return <Userpage id={identity} platform="safe" />;
+  } else {
+    return <Userpage id={identity} platform="unknown" error={true} />;
+  }
 }

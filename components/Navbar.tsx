@@ -8,7 +8,7 @@ import { BsArrowUpRight } from "react-icons/bs";
 
 export default function Navbar() {
   const router = useRouter();
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("vatalic.eth");
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       // Call your search function here

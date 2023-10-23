@@ -22,12 +22,7 @@ import { HiOutlineSwitchHorizontal } from "react-icons/hi";
 import { RiFileList3Fill } from "react-icons/ri";
 import { useMyContext } from "@/context/AppContext";
 import { DataThroughAddress } from "@/lib/MaskNetwork-Api/RelationshipServiceUseingWeb3Bio";
-function shortenAddress(address: string | undefined, chars: 13 | 20) {
-  // 0x6ebbb366bc7542eeee...5683
-  if (!address) return null;
-  if (chars === 13) return `${address.slice(0, 13)}...${address.slice(-4)}`;
-  return `${address.slice(0, 20)}...${address.slice(-4)}`;
-}
+import { shortenAddress } from "@/lib/utils";
 interface Item {
   blockHash: "0xa54e2e48552c7428c6f7b5b748a78d452a3bd23a227e4c992c634d315816d8e5";
   blockNumber: "18399277";
@@ -68,7 +63,7 @@ export function DataRow({
   fees,
   key,
 }: DataRowProps) {
-  const data = DataThroughAddress(userAddress);
+  // const data = DataThroughAddress(userAddress);
   // async function DataApi() {
   //   const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
   //   const action = "txlist"; // For normal transactions
@@ -182,13 +177,12 @@ export default function LatestCreationFeed() {
   async function DataApi() {
     const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
     const action = "txlist"; // For normal transactions
-    const modul = "account";
     const startBlock = "latest - 100"; // Start from block 0
     const endBlock = "latest"; // Up to the latest block
     axios
       .get(options[currentIndex].ScanLink, {
         params: {
-          modul,
+          module: "account",
           action,
           address,
           startblock: startBlock,

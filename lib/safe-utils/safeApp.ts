@@ -21,7 +21,7 @@ import { txServiceList } from "./safeData";
 //Returns the information and configuration of the service.
 export async function getServiceInfo(
   address: any,
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string
 ) {
   try {
@@ -46,7 +46,7 @@ export async function getServiceInfo(
 /// this help to find safe account of the address
 export async function getSafesByOwner(
   address: any,
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string
 ) {
   try {
@@ -70,7 +70,7 @@ export async function getSafesByOwner(
 // export async function Ownerdetal({
 //   signer,
 // }: {
-//   signer: providers.JsonRpcSigner;
+//   signer: any;
 // }) {
 //   try {
 //     const ethAdapterOwner1 = new EthersAdapter({
@@ -98,7 +98,7 @@ export async function getSafesByOwner(
 // return the data of multisig transaction by transaction hash
 export async function getMultisigTransaction(
   safeTxHash: any,
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string
 ) {
   const ethAdapterOwner1 = new EthersAdapter({
@@ -118,7 +118,7 @@ export async function getMultisigTransaction(
 
 // return the transaction detail by taking parameter  of safe service and transaction hash as safetxhash
 export async function getDataWithTransactionHash(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   safeTxHash: string
 ) {
@@ -168,7 +168,7 @@ export async function getSafeInfo(
 
 // return the information of safe creation
 export async function getSafeCreationInfo(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -188,7 +188,7 @@ export async function getSafeCreationInfo(
 
 // return the safe transaction history
 export async function SafeTransactionsHistory(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -209,7 +209,7 @@ export async function SafeTransactionsHistory(
 
 // return the transaction history by any module
 export async function ModuleTransactionsHistory(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -230,7 +230,7 @@ export async function ModuleTransactionsHistory(
 
 // return the transaction history of a safe with multiple owner
 export async function MultisigTransactionsHistory(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -251,7 +251,7 @@ export async function MultisigTransactionsHistory(
 
 // return all the pending transaction  of safe with multiple owner
 export async function MultiSigPendingTransactionsList(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -272,7 +272,7 @@ export async function MultiSigPendingTransactionsList(
 
 /// return all the transaction list of a  particular safe
 export async function AllTransactionList(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string
 ) {
@@ -292,7 +292,7 @@ export async function AllTransactionList(
 
 // its return pending transaction list by taking safe address and nonce
 export async function PendingTransactionsListWithCurrentNonce(
-  signer: providers.JsonRpcSigner,
+  signer: any,
   txServiceUrl: string,
   address: string,
   currentNonce: any
@@ -313,10 +313,7 @@ export async function PendingTransactionsListWithCurrentNonce(
 
 // return the info about the safe  with all info
 
-export async function AllTokenForSafe(
-  signer: providers.JsonRpcSigner,
-  txServiceUrl: string
-) {
+export async function AllTokenForSafe(signer: any, txServiceUrl: string) {
   const ethAdapterOwner1 = new EthersAdapter({
     ethers,
     signerOrProvider: signer,
