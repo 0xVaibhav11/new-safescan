@@ -77,70 +77,71 @@
 ///////////////////////////////////////////// get safe info  through address ///////////////////////////////
 
 // import { getDataWithTransactionHash } from "../utils/Safe-Api/safeApp";
-import React from "react";
-// import AKAfunction from "../utils/Safe-Api/safeApp";
-import { ethers } from "ethers";
-import SafeApiKit from "@safe-global/api-kit";
-import { options } from "@/lib/AllData/AllOption";
-import {
-  getSafeInfo,
-  getServiceInfo,
-  getSafesByOwner,
-} from "@/lib/safe-utils/safeApp";
-import { Wallet, providers, Signer } from "ethers";
+// import React from "react";
+// // import AKAfunction from "../utils/Safe-Api/safeApp";
+// import { ethers } from "ethers";
+// import SafeApiKit from "@safe-global/api-kit";
+// import { options } from "@/lib/AllData/AllOption";
+// import {
+//   getSafeInfo,
+//   getServiceInfo,
+//   getDataWithTransactionHash,
+//   getSafesByOwner,
+// } from "@/lib/safe-utils/safeApp";
+// import { Wallet, providers, Signer } from "ethers";
 
-export function getSignerFromPrivateKey(
-  privateKey: string,
-  rpcUrl: string
-): Signer {
-  const provider = new providers.JsonRpcProvider(rpcUrl);
-  const wallet = new Wallet(privateKey, provider);
-  return wallet;
-}
+// export function getSignerFromPrivateKey(
+//   privateKey: string,
+//   rpcUrl: string
+// ): Signer {
+//   const provider = new providers.JsonRpcProvider(rpcUrl);
+//   const wallet = new Wallet(privateKey, provider);
+//   return wallet;
+// }
 
-import { EthersAdapter } from "@safe-global/protocol-kit/dist/src/adapters/ethers";
-// import { useWalletClient, useAccount } from "wagmi";
+// import { EthersAdapter } from "@safe-global/protocol-kit/dist/src/adapters/ethers";
+// // import { useWalletClient, useAccount } from "wagmi";
 
-// import { useEthersSigner } from "../utils/hooks/ethersSigner";
-// import { txServiceList } from "../utils/Safe-Api/ServciceData";
+// // import { useEthersSigner } from "../utils/hooks/ethersSigner";
+// // import { txServiceList } from "../utils/Safe-Api/ServciceData";
 
-const apitesting = () => {
-  // const { data: walletClient, isError, isLoading } = useWalletClient();
-  // const signer: any = useEthersSigner();
-  // const { address } = useAccount();
-  const signer = getSignerFromPrivateKey(
-    "b2dfd42d32e7edf1a74fe0b3fa07d2773d6b0145a19553a770d91a80333a8c39",
-    options[6].ProviderLink
-  );
+// const apitesting = () => {
+//   // const { data: walletClient, isError, isLoading } = useWalletClient();
+//   // const signer: any = useEthersSigner();
+//   // const { address } = useAccount();
+//   const signer = getSignerFromPrivateKey(
+//     "b2dfd42d32e7edf1a74fe0b3fa07d2773d6b0145a19553a770d91a80333a8c39",
+//     options[6].ProviderLink
+//   );
 
-  async function hello() {
-    const safeTxHash = "0xa43624b7472c37B1E1884645a3D04710afCD8eB5";
-    try {
-      const ans = await getSafeInfo(
-        signer,
-        options[6].SafeTxService,
-        safeTxHash
-      );
-      console.log(ans);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+//   async function hello() {
+//     const safeTxHash = "0xa43624b7472c37B1E1884645a3D04710afCD8eB5";
+//     try {
+//       const ans = await getDataWithTransactionHash(
+//         signer,
+//         "https://safe-transaction-goerli.safe.global/",
+//         "0x492e1f5905fa51b38533e99fd6aa431915c40c09e9df4fce40b3d64539ba4893"
+//       );
+//       console.log(ans);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
 
-  return (
-    <div>
-      <button
-        onClick={() => {
-          hello();
-        }}
-      >
-        lfjwpojfjow eofdwo iofiouwh fioof
-      </button>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <button
+//         onClick={() => {
+//           hello();
+//         }}
+//       >
+//         lfjwpojfjow
+//       </button>
+//     </div>
+//   );
+// };
 
-export default apitesting;
+// export default apitesting;
 
 /////////////////////////////////////////////////// safe creation info ///////////////////////////////
 // import React from "react";
@@ -233,48 +234,66 @@ export default apitesting;
 // export default apitesting;
 
 /////////////////////////// All transaction  testing //////////////////////////
-// import React from "react";
-// import {
-//   AllTransactionList,
-//   getDataWithTransactionHash,
-// } from "../utils/Safe-Api/safeApp";
+import React from "react";
+// import AKAfunction from "../utils/Safe-Api/safeApp";
+import { ethers } from "ethers";
+import SafeApiKit from "@safe-global/api-kit";
+import { options } from "@/lib/AllData/AllOption";
+import { AllTransactionList } from "@/lib/safe-utils/safeApp";
+import { Wallet, providers, Signer } from "ethers";
+
+export function getSignerFromPrivateKey(
+  privateKey: string,
+  rpcUrl: string
+): Signer {
+  const provider = new providers.JsonRpcProvider(rpcUrl);
+  const wallet = new Wallet(privateKey, provider);
+  return wallet;
+}
+
+import { EthersAdapter } from "@safe-global/protocol-kit/dist/src/adapters/ethers";
 // import { useWalletClient, useAccount } from "wagmi";
+
 // import { useEthersSigner } from "../utils/hooks/ethersSigner";
 // import { txServiceList } from "../utils/Safe-Api/ServciceData";
-// import { fetchTransaction } from "@wagmi/core";
 
-// const apitesting = () => {
-//   const { data: walletClient, isError, isLoading } = useWalletClient();
-//   const signer: any = useEthersSigner();
-//   const { address } = useAccount();
+const apitesting = () => {
+  // const { data: walletClient, isError, isLoading } = useWalletClient();
+  // const signer: any = useEthersSigner();
+  // const { address } = useAccount();
+  const signer = getSignerFromPrivateKey(
+    "b2dfd42d32e7edf1a74fe0b3fa07d2773d6b0145a19553a770d91a80333a8c39",
+    options[6].ProviderLink
+  );
 
-//   async function hello() {
-//     const safeTxHash =
-//       "0x596104426ff8fd56e0488099cfe1829b45aaab323af1ef9cf8d610cae7af57ac";
-//     const safeAddress = "0xa43624b7472c37B1E1884645a3D04710afCD8eB5";
-//     try {
-//       const transaction = await fetchTransaction({
-//         hash: safeTxHash,
-//       });
-//       console.log(transaction);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   }
+  async function hello() {
+    const safeTxHash = "0xa43624b7472c37B1E1884645a3D04710afCD8eB5";
+    try {
+      const ans = await AllTransactionList(
+        signer,
+        "https://safe-transaction-goerli.safe.global/",
+        "0xa43624b7472c37B1E1884645a3D04710afCD8eB5"
+      );
+      console.log(ans);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
-//   return (
-//     <div>
-//       <button
-//         onClick={() => {
-//           hello();
-//         }}
-//       >
-//         Testings{" "}
-//       </button>
-//     </div>
-//   );
-// };
+  return (
+    <div>
+      <button
+        onClick={() => {
+          hello();
+        }}
+      >
+        lfjwpojfjow
+      </button>
+    </div>
+  );
+};
 
+export default apitesting;
 // export default apitesting;
 
 /////////////////////////// All transaction  of creater contract //////////////////////////
@@ -385,6 +404,70 @@ export default apitesting;
 //         }}
 //       >
 //         hello
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default apitesting;
+
+////// safe by owner
+
+// import React from "react";
+// // import AKAfunction from "../utils/Safe-Api/safeApp";
+// import { ethers } from "ethers";
+// import SafeApiKit from "@safe-global/api-kit";
+// import { options } from "@/lib/AllData/AllOption";
+// import { getSafesByOwner } from "@/lib/safe-utils/safeApp";
+// import { Wallet, providers, Signer } from "ethers";
+
+// export function getSignerFromPrivateKey(
+//   privateKey: string,
+//   rpcUrl: string
+// ): Signer {
+//   const provider = new providers.JsonRpcProvider(rpcUrl);
+//   const wallet = new Wallet(privateKey, provider);
+//   return wallet;
+// }
+
+// import { EthersAdapter } from "@safe-global/protocol-kit/dist/src/adapters/ethers";
+// // import { useWalletClient, useAccount } from "wagmi";
+
+// // import { useEthersSigner } from "../utils/hooks/ethersSigner";
+// // import { txServiceList } from "../utils/Safe-Api/ServciceData";
+
+// const apitesting = () => {
+//   // const { data: walletClient, isError, isLoading } = useWalletClient();
+//   // const signer: any = useEthersSigner();
+//   // const { address } = useAccount();
+//   const signer = getSignerFromPrivateKey(
+//     "b2dfd42d32e7edf1a74fe0b3fa07d2773d6b0145a19553a770d91a80333a8c39",
+//     options[6].ProviderLink
+//   );
+
+//   async function hello() {
+//     const safeTxHash = "0xa43624b7472c37B1E1884645a3D04710afCD8eB5";
+//     try {
+//       const ans = await getSafesByOwner(
+//         "0x645D85678C2d4C56c17F3579a278C2bE2D73119c",
+
+//         signer,
+//         "https://safe-transaction-goerli.safe.global/"
+//       );
+//       console.log(ans);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   }
+
+//   return (
+//     <div>
+//       <button
+//         onClick={() => {
+//           hello();
+//         }}
+//       >
+//         lfjwpojfjow
 //       </button>
 //     </div>
 //   );

@@ -7,6 +7,13 @@ type NextidInfo = {
   platform: string;
   identity: string;
 };
+// interface Identity {
+//   displayName: string;
+//   identity: string;
+//   platform: string;
+//   uuid: string;
+//   __typename: "IdentityRecord";
+// }
 export type NextidNeighbor = {
   displayName: string;
   identity: string;
@@ -24,8 +31,7 @@ type NextidData = {
 };
 
 export function useNextid({ platform, identity }: NextidInfo) {
-  const [otherAcc, setOtherAcc] = useState([]);
-  const [accReady, setAccReady] = useState<boolean>(); // [twitter, ens, farcaster, lens, github
+  let ident = {};
   const { data, loading, error } = useQuery(GET_NEXTID_INFO, {
     variables: {
       platform: platform,
@@ -34,18 +40,15 @@ export function useNextid({ platform, identity }: NextidInfo) {
   });
 
   useEffect(() => {
-    if (loading) return;
-    if (!data.identity.neighbor) {
-      setOtherAcc(data.identity.neighbor);
-      setAccReady(true);
+    if (data) {
+      ident = data?.identity.neighbor;
     }
-  }, [data, loading]);
+  }, [data]);
 
   return {
     data,
     loading,
     error,
-    otherAcc,
-    accReady,
+    ident,
   };
 }

@@ -177,6 +177,7 @@ export default function LatestCreationFeed() {
   async function DataApi() {
     const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
     const action = "txlist"; // For normal transactions
+
     const startBlock = "latest - 100"; // Start from block 0
     const endBlock = "latest"; // Up to the latest block
     axios

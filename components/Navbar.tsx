@@ -6,9 +6,19 @@ import { Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
 import { BsArrowUpRight } from "react-icons/bs";
-import Drawer from "./Drawer/Drawer";
+import { options } from "@/lib/AllData/AllOption";
+import { useMyContext } from "@/context/AppContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Navbar() {
+  const { SerchIndex, setSerchIndex } = useMyContext();
   const router = useRouter();
   const [search, setSearch] = useState("vatalic.eth");
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -42,11 +52,29 @@ export default function Navbar() {
           <BsArrowUpRight />{" "}
         </div>
       </div>
-      <div>
-        <Drawer />
-      </div>
+
       <div className=" flex w-[30%] text-xl py-[0.5rem] font-body">
-        {/* "0xfbfb3fb72b2a59e8bca2f88d1e13293cbd98d10fb4ccaea25be8d61d1b65c9d4" */}
+        <div className="mr-[0.5rem] mt-2">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              {options[SerchIndex].label}
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {options.map((items, index) => {
+                return (
+                  <DropdownMenuItem
+                    onClick={() => {
+                      setSerchIndex(index);
+                    }}
+                  >
+                    {items.label}
+                  </DropdownMenuItem>
+                );
+              })}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
         <Input
           type="email"
           placeholder="Search by address / Txn hash / @twitter / web3 identity"

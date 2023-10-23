@@ -11,6 +11,7 @@ type UserIdBadgeProps = {
 export const platforms = ["twitter", "ens", "github", "farcaster", "lens"];
 
 export function UserIdBadge({ platform, id }: UserIdBadgeProps) {
+  console.log(platform, id);
   const shortenId = shortenAddress(id, 4);
   if (platform === "ens") {
     return <Badge>{shortenId}</Badge>;

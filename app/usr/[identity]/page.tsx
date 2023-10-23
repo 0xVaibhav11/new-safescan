@@ -16,7 +16,6 @@ export default function Txn({
   params: { identity: string };
 }) {
   const [flagdata, setFlagdata] = useState({
-    eao: false,
     safe: false,
     twitter: false,
     lens: false,
@@ -34,7 +33,10 @@ export default function Txn({
   async function IdentityFUnction() {
     try {
       if (identity.length == 42) {
-        await name();
+        setFlagdata((prevState) => ({
+          ...prevState,
+          safe: true,
+        }));
       } else if (
         identity.slice(identity.length - 4, identity.length) == "lens"
       ) {
@@ -70,23 +72,6 @@ export default function Txn({
       console.log(e);
     }
   }
-  async function name() {
-    const ans = await getSafeInfo(signer, options[6].SafeTxService, identity);
-
-    if (ans == undefined) {
-      setFlagdata((prevState) => ({
-        ...prevState,
-        eao: true,
-      }));
-      console.log("eao");
-    } else {
-      console.log("safe");
-      setFlagdata((prevState) => ({
-        ...prevState,
-        safe: true,
-      }));
-    }
-  }
 
   React.useEffect(() => {
     IdentityFUnction();
@@ -100,8 +85,6 @@ export default function Txn({
     return <Userpage id={identity} platform="twitter" />;
   } else if (flagdata.lens) {
     return <Userpage id={identity} platform="lens" />;
-  } else if (flagdata.eao) {
-    return <Userpage id={identity} platform="eoa" />;
   } else if (flagdata.safe) {
     return <Userpage id={identity} platform="safe" />;
   } else {
