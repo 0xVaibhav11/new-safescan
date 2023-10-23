@@ -1,0 +1,67 @@
+.main {
+  height: 100vh;
+  width: 100%;
+  padding-left: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  place-items: center;
+  .card {
+    width: 30rem;
+    height: 10rem;
+    background-color: #212121;
+    text-align: center;
+    border: 10px solid #212121;
+    border-radius: 20px;
+    box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px #222;
+    transition: 0.5s;
+
+    &:hover {
+      height: 35rem;
+      .content {
+        transform: translateY(0px) scale(1);
+      }
+    }
+
+    .icon {
+      width: 150px;
+      height: 60px;
+      color: black;
+
+      text-shadow: 2px 2px 0px #fff;
+      text-align: center;
+      font-size: 30px;
+      background-color: #eee;
+      margin: 40px auto;
+      padding: 5px;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px, inset rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        inset rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      // box-shadow: 8px 8px 10px #ddd, -8px -8px 10px #fff;
+      .text {
+        margin-top: 12px;
+      }
+    }
+
+    .content {
+      color: black;
+      background-color: #eee;
+      padding: 10px;
+      margin: 5px 20px;
+      border-radius: 8px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px, inset rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        inset rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      // box-shadow: 8px 8px 10px #ddd, -8px -8px 10px #fff;
+      transform: translateY(-80px) scale(0);
+
+      margin-bottom: 10px;
+
+      transition: all 0.5s;
+      h3 {
+        text-shadow: 2px 2px 0px #fff;
+      }
+    }
+  }
+}

@@ -2,9 +2,34 @@
   margin: auto;
   margin-top: 50px;
   height: auto;
-  padding: 0px 100px 0px 100px;
+  padding: 0px 150px 0px 150px;
   gap: 12px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  place-items: center;
   @media screen and (min-width: 1600px) {
     padding: 0px 350px 0px 350px;
+  }
+  .column {
+    float: left;
+    width: 45%;
+    padding: 20px;
+    height: 70px;
+    background-color: #212121;
+    margin-top: 3px;
+    border: 3px solid #212121;
+    border-radius: 20px;
+    box-shadow: inset 5px 5px 10px black, inset -5px -5px 10px #222;
+    transition: 0.5s;
+    gap: 4px;
+    font-family: var(--font-body);
+    font-size: large;
+
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
   }
 }

@@ -2,6 +2,13 @@
 import styles from "./page.module.scss";
 import * as React from "react";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { GoQuestion } from "react-icons/go";
 interface TxData {
   accessList: [];
   blockHash: "0x183d2f73c320a0f5a00af512e16f325aa2b2bf30fa73c9fe90b1b9ae4c69e6df";
@@ -23,6 +30,41 @@ interface TxData {
   v: 0n;
   value: 1000000000000000000n;
 }
+
+// :
+// 0
+// blockNumber
+// :
+// 9901314
+// confirmations: [{…}]
+// confirmationsRequired: 1
+// data: null
+// dataDecoded: null
+// ethGasPrice: "1062"
+// executionDate: "2023-10-20T18:11:24Z"
+// executor: "0x41E5d6bdF32d1ACB1aB0abeE083A211385591E62"
+// fee: "204925644"
+// gasPrice: "0"
+// gasToken: "0x0000000000000000000000000000000000000000"
+// gasUsed: 192962
+// isExecuted: true
+// isSuccessful: true
+// maxFeePerGas: "1066"
+// maxPriorityFeePerGas: "1050"
+// modified: "2023-10-20T18:11:29.139266Z"
+// nonce: 0
+// operation: 0
+// origin: "{}"
+// refundReceiver: "0x0000000000000000000000000000000000000000"
+// safe: "0xa43624b7472c37B1E1884645a3D04710afCD8eB5"
+// safeTxGas: 0
+// safeTxHash: "0x492e1f5905fa51b38533e99fd6aa431915c40c09e9df4fce40b3d64539ba4893"
+// signatures: "0xef5196853d3109d67be4335c296b0bfafb22837e287178139f60e17d64e13a5304fce22f0536674f398ba6e6b5a64cc654354a6bf77e6f5ea0328aad511fa70d1b"
+// submissionDate: "2023-10-20T18:11:10.905217Z"
+// to: "0x645D85678C2d4C56c17F3579a278C2bE2D73119c"
+// transactionHash: "0x8203fa9cbe0b0b6bf0496cc0900be12b8950447d681c733e5af7faefea488fbf"
+// trusted: true
+// value: "100000000000000000"
 
 const DetailsPage = ({ params }: { params: { SinglePage: string } }) => {
   // const [transactionData, setTransactionData] = React.useState<Transaction>();
@@ -85,17 +127,40 @@ const DetailsPage = ({ params }: { params: { SinglePage: string } }) => {
         <div className="space-y-8">
           {rows.map((item, a) => (
             <div key={a}>
-              <div className="flex  justify-evenly items-center">
-                <div className="ml-4 space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {item.name}
-                  </p>
-                  <p className="text-sm text-muted-foreground">2232</p>
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div style={{ display: "flex", flexDirection: "row" }}>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger className=" mr-2">
+                          <GoQuestion />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{item.toolpick}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+
+                    <h2> {item.name}</h2>
+                  </div>
                 </div>
-                <div className="ml-auto font-medium">{item.toolpick}</div>
+                <div className={styles.column}>
+                  <h2>{item.toolpick}</h2>
+                </div>
               </div>
-              <Separator className="my-4" />
             </div>
+            // <div key={a}>
+            //   <div className="flex  justify-evenly items-center">
+            //     <div className="ml-4 space-y-1">
+            //       <p className="text-sm font-medium leading-none">
+            //         {item.name}
+            //       </p>
+            //       <p className="text-sm text-muted-foreground">2232</p>
+            //     </div>
+            //     <div className="ml-auto font-medium">{item.toolpick}</div>
+            //   </div>
+            //   <Separator className="my-4" />
+            // </div>
           ))}
         </div>
       </div>

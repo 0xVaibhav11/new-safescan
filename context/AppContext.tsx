@@ -7,6 +7,8 @@ import { ethers } from "ethers";
 interface MyContextData {
   currentIndex: number;
   setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+  SerchIndex: number;
+  setSerchIndex: React.Dispatch<React.SetStateAction<number>>;
   privateKey: string | undefined;
 }
 interface ChainsDatas {
@@ -17,16 +19,22 @@ interface ChainsDatas {
   txService: string;
 }
 
-// Create the context with an initial state
 const MyContext = createContext<MyContextData | undefined>(undefined);
 
-// Create a context provider component
 export function MyContextProvider({ children }: { children: ReactNode }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [SerchIndex, setSerchIndex] = useState(0);
   const privateKey = process.env.NEXT_PUBLIC_PrivateKey;
   return (
-    <MyContext.Provider value={{ privateKey, currentIndex, setCurrentIndex }}>
-      {" "}
+    <MyContext.Provider
+      value={{
+        privateKey,
+        currentIndex,
+        setCurrentIndex,
+        SerchIndex,
+        setSerchIndex,
+      }}
+    >
       {children}
     </MyContext.Provider>
   );

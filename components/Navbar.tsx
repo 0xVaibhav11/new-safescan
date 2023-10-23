@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React, { useState } from "react";
 import { AspectRatio } from "./ui/aspect-ratio";
@@ -5,6 +6,7 @@ import { Input } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { FiSearch } from "react-icons/fi";
 import { BsArrowUpRight } from "react-icons/bs";
+import Drawer from "./Drawer/Drawer";
 
 export default function Navbar() {
   const router = useRouter();
@@ -39,6 +41,9 @@ export default function Navbar() {
         <div style={{ padding: "4px" }}>
           <BsArrowUpRight />{" "}
         </div>
+      </div>
+      <div>
+        <Drawer />
       </div>
       <div className=" flex w-[30%] text-xl py-[0.5rem] font-body">
         {/* "0xfbfb3fb72b2a59e8bca2f88d1e13293cbd98d10fb4ccaea25be8d61d1b65c9d4" */}

@@ -314,6 +314,10 @@ export async function PendingTransactionsListWithCurrentNonce(
 // return the info about the safe  with all info
 
 export async function AllTokenForSafe(signer: any, txServiceUrl: string) {
+export async function AllTokenForSafe(
+  signer: any,
+  txServiceUrl: string
+) {
   const ethAdapterOwner1 = new EthersAdapter({
     ethers,
     signerOrProvider: signer,
