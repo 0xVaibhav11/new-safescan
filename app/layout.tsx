@@ -36,7 +36,9 @@ export default function RootLayout({
       >
         <MyContextProvider>
           <Providers>
-            <Navbar />
+            <div className="w-full px-4">
+              <Navbar />
+            </div>
             {children}
           </Providers>
         </MyContextProvider>

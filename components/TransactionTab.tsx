@@ -33,7 +33,107 @@ type DataRowProps = {
 
   key: any;
 };
-export function DataRow({
+export function DataRowForSingle({
+  userAddress,
+  txnHash,
+  action,
+  time,
+  block,
+
+  key,
+}: DataRowProps) {
+  if (action == "MULTISIG_TRANSACTION") {
+    return;
+  }
+  return (
+    <div
+      id="row"
+      className=" w-full h-max p-4 flex justify-between items-center"
+      key={key}
+    >
+      <div id="txnColumn" className="w-[45%] flex flex-col gap-2">
+        <div className=" flex gap-2 items-center  text-muted-foreground">
+          <HiOutlineSwitchHorizontal />
+          <p className=" text-foreground-900">
+            {shortenAddress(userAddress, 20)}
+          </p>
+          <p className="">{time}</p>
+        </div>
+      </div>
+      <div id="userColumn" className=" flex gap-2 items-center">
+        <div className=" text-xl text-muted-foreground">
+          <FiArrowDown />
+        </div>
+        <div className="flex flex-col gap-1">
+          <Link href={`/txn/${txnHash}s`} passHref>
+            <p>{shortenAddress(txnHash, 13)}</p>
+          </Link>
+          <Badge className="flex gap-1">
+            <RiFileList3Fill />
+            {action}
+          </Badge>
+        </div>
+      </div>
+      <div id="timeColumn" className="">
+        <div className=" flex gap-2">
+          <p>Block</p>
+          <p className=" text-muted-foreground">{block}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+export function DataRowForMulti({
+  userAddress,
+  txnHash,
+  action,
+  time,
+  block,
+
+  key,
+}: DataRowProps) {
+  if (action == "ETHEREUM_TRANSACTION") {
+    return;
+  }
+  return (
+    <div
+      id="row"
+      className=" w-full h-max p-4 flex justify-between items-center"
+      key={key}
+    >
+      <div id="txnColumn" className="w-[45%] flex flex-col gap-2">
+        <div className=" flex gap-2 items-center  text-muted-foreground">
+          <HiOutlineSwitchHorizontal />
+          <p className=" text-foreground-900">
+            {shortenAddress(userAddress, 20)}
+          </p>
+          <p className="">{time}</p>
+        </div>
+      </div>
+      <div id="userColumn" className=" flex gap-2 items-center">
+        <div className=" text-xl text-muted-foreground">
+          <FiArrowDown />
+        </div>
+        <div className="flex flex-col gap-1">
+          <Link href={`/txn/${txnHash}s`} passHref>
+            <p>{shortenAddress(txnHash, 13)}</p>
+          </Link>
+          <Badge className="flex gap-1">
+            <RiFileList3Fill />
+            {action}
+          </Badge>
+        </div>
+      </div>
+      <div id="timeColumn" className="">
+        <div className=" flex gap-2">
+          <p>Block</p>
+          <p className=" text-muted-foreground">{block}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+export function DataRowModule({
   userAddress,
   txnHash,
   action,
@@ -92,8 +192,10 @@ export function getSignerFromPrivateKey(
   const wallet = new Wallet(privateKey, provider);
   return wallet;
 }
-export default function LatestCreationFeed({ address }: { address: string }) {
+export default function TransactionTab({ address }: { address: string }) {
   const [flag, setFlag] = useState(false);
+  const { SerchIndex, setSerchIndex } = useMyContext();
+
   const [itemTOshow, setItemsToShow] = useState<Item[]>([
     {
       txType: "",
@@ -114,7 +216,7 @@ export default function LatestCreationFeed({ address }: { address: string }) {
     try {
       const ans: any = await AllTransactionList(
         signer,
-        options[currentIndex].SafeTxService,
+        options[SerchIndex].SafeTxService,
         address
       );
       setFlag(true);
@@ -125,40 +227,70 @@ export default function LatestCreationFeed({ address }: { address: string }) {
     }
   }
 
-  const { currentIndex, setCurrentIndex } = useMyContext();
-
   React.useEffect(() => {
     setFlag(false);
     AllTransaction();
-  }, [currentIndex]);
+  }, [SerchIndex]);
 
   return (
-    <div className=" w-full h-full">
-      <Tabs defaultValue="Etherum" className="w-full">
+    <div className=" w-[80vw] h-full ">
+      <Tabs defaultValue="SafeTransaction" className="w-full">
         <TabsList className="w-full flex">
-          {options.map((option, index) => {
-            return (
-              <TabsTrigger
-                key={index}
-                onClick={(e) => {
-                  setCurrentIndex(index);
-                  console.log(index);
-                }}
-                className=" w-full"
-                value={option.label}
-              >
-                {option.label}
-              </TabsTrigger>
-            );
-          })}
+          <TabsTrigger className=" w-full" value="SafeTransaction">
+            Safe Transaction
+          </TabsTrigger>
+          <TabsTrigger className=" w-full" value="MultiTx">
+            MultiSign Transaction
+          </TabsTrigger>
+          <TabsTrigger className=" w-full" value="ModuleTx">
+            Module Transaction
+          </TabsTrigger>
         </TabsList>
-        <TabsContent value={options[currentIndex].label}>
+        <TabsContent value="SafeTransaction">
           {flag && (
             <div className="w-full min-h-[100vh]   flex flex-col">
               {Array.isArray(itemTOshow) &&
                 itemTOshow.map((items, key) => {
                   return (
-                    <DataRow
+                    <DataRowForSingle
+                      key={key}
+                      userAddress={items.from}
+                      txnHash={items.txHash}
+                      block={items.blockNumber}
+                      time={items.executionDate}
+                      action={items.txType}
+                    />
+                  );
+                })}
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent value="MultiTx">
+          {flag && (
+            <div className="w-full min-h-[100vh]   flex flex-col">
+              {Array.isArray(itemTOshow) &&
+                itemTOshow.map((items, key) => {
+                  return (
+                    <DataRowForMulti
+                      key={key}
+                      userAddress={items.from}
+                      txnHash={items.txHash}
+                      block={items.blockNumber}
+                      time={items.executionDate}
+                      action={items.txType}
+                    />
+                  );
+                })}
+            </div>
+          )}
+        </TabsContent>
+        <TabsContent value="ModuleTx">
+          {flag && (
+            <div className="w-full min-h-[100vh]   flex flex-col">
+              {Array.isArray(itemTOshow) &&
+                itemTOshow.map((items, key) => {
+                  return (
+                    <DataRowModule
                       key={key}
                       userAddress={items.from}
                       txnHash={items.txHash}

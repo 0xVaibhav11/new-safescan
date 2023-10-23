@@ -23,6 +23,11 @@ import { RiFileList3Fill } from "react-icons/ri";
 import { useMyContext } from "@/context/AppContext";
 import { DataThroughAddress } from "@/lib/MaskNetwork-Api/RelationshipServiceUseingWeb3Bio";
 import { shortenAddress } from "@/lib/utils";
+import { Skeleton } from "./ui/skeleton";
+import moment from "moment";
+import { NextIdUsingAddr } from "@/lib/hooks/use-nextid-relation-service";
+
+export const revalidate = 10;
 interface Item {
   blockHash: "0xa54e2e48552c7428c6f7b5b748a78d452a3bd23a227e4c992c634d315816d8e5";
   blockNumber: "18399277";
@@ -54,6 +59,59 @@ type DataRowProps = {
   fees: string;
   key: any;
 };
+export function LoadingDataRows({ repeat }: { repeat: number }) {
+  const rows = createArray(repeat);
+  function createArray(count: number): number[] {
+    return Array.from({ length: count }, (_, i) => i);
+  }
+  return (
+    <>
+      {rows.map((row) => {
+        return (
+          <div
+            id="row"
+            className=" w-full h-max p-4 flex justify-between items-center"
+            key={row}
+          >
+            <div id="txnColumn" className="w-[45%] flex flex-col gap-2">
+              <div className=" flex text-xs gap-2">
+                <Skeleton className=" w-20 h-4" />
+                <Skeleton className=" w-10 h-4" />
+                <Skeleton className=" w-12 h-4" />
+              </div>
+
+              <div className=" flex gap-2 items-center  text-muted-foreground">
+                <HiOutlineSwitchHorizontal />
+                <Skeleton className=" w-[50%] h-4" />
+              </div>
+            </div>
+            <div id="userColumn" className=" flex gap-2 items-center">
+              <div className=" text-xl text-muted-foreground">
+                <FiArrowDown />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Skeleton className=" w-44 h-4" />
+
+                <Skeleton className=" w-40 h-4" />
+              </div>
+            </div>
+            <div id="timeColumn" className="">
+              <div className=" flex gap-2 items-center">
+                <p>Block</p>
+                <Skeleton className=" w-8 h-4" />
+              </div>
+              <div className=" flex gap-2 items-center">
+                <p>Fees</p>
+                <Skeleton className=" w-8 h-4" />
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 export function DataRow({
   userAddress,
   txnHash,
@@ -99,18 +157,20 @@ export function DataRow({
       className=" w-full h-max p-4 flex justify-between items-center"
       key={key}
     >
-      {" "}
       <div id="txnColumn" className="w-[45%] flex flex-col gap-2">
         <div className=" flex text-xs gap-2">
-          <Badge className=" bg-green-500">twitter</Badge>
-          <Badge>lol.eth</Badge>
-          <Badge>ungatunga</Badge>
+          {/* <NextIdUsingAddr
+            identity="ethereum"
+            platform="0x7cbba07e31dc7b12bb69a1209c5b11a8ac50acf5"
+          /> */}
+          <NextIdUsingAddr identity={userAddress} platform="ethereum" />
         </div>
 
         <div className=" flex gap-2 items-center  text-muted-foreground">
           <HiOutlineSwitchHorizontal />
           <p className=" text-foreground-900">
             {shortenAddress(userAddress, 20)}
+            {/* {userAddress} */}
           </p>
           <p className="">{time}</p>
         </div>
@@ -173,36 +233,28 @@ export default function LatestCreationFeed() {
     },
   ]);
   const { currentIndex, setCurrentIndex } = useMyContext();
+  const [totalTransaction, setTotalTransaction] = useState(0);
 
   async function DataApi() {
+    //totalTransaction
     const address = "0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2";
     const action = "txlist"; // For normal transactions
-
-    const startBlock = "latest - 100"; // Start from block 0
-    const endBlock = "latest"; // Up to the latest block
-    axios
-      .get(options[currentIndex].ScanLink, {
-        params: {
-          module: "account",
-          action,
-          address,
-          startblock: startBlock,
-          page: 1,
-          endblock: endBlock,
-          sort: "desc", // To get the most recent transactions first
-          apikey: options[currentIndex].ApiKey,
+    const modul = "account";
+    const startBlock = "0"; // Start from block 0
+    const endBlock = "99999999"; // 99999999 Up to the latest block
+    const res = await fetch(
+      `${options[currentIndex].ScanLink}?module=${modul}&action=${action}&startblock=${startBlock}&endblock=${endBlock}&sort=desc&address=${address}&page=1&apikey=${options[currentIndex].ApiKey}`,
+      {
+        next: {
+          revalidate: 1,
         },
-      })
-      .then((response) => {
-        const transactions = response.data.result;
-
-        setItemsToShow(transactions.slice(0, 10));
-        setFlag(true);
-        console.log("Transactions:", transactions);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      }
+    );
+    const data = await res.json();
+    console.log(data);
+    setTotalTransaction(data.result.length);
+    setItemsToShow(data.result.slice(0, 10));
+    setFlag(true);
   }
   React.useEffect(() => {
     DataApi();
@@ -231,23 +283,42 @@ export default function LatestCreationFeed() {
           })}
         </TabsList>
         <TabsContent value={options[currentIndex].label}>
-          {flag && (
-            <div className="w-full min-h-[100vh]   flex flex-col">
+          {flag ? (
+            <p className=" text-lg text-muted-foreground">
+              Showing <span className="text-white">10</span> txns of total{" "}
+              <span className=" text-green-600">{totalTransaction}+</span>
+            </p>
+          ) : (
+            <div className="flex item-center gap-2">
+              <p className=" text-lg text-muted-foreground">
+                Showing <span className="text-white">10</span> txns of total{" "}
+              </p>
+              <Skeleton className=" w-20 h-4  mt-1" />
+            </div>
+          )}
+
+          {flag ? (
+            <>
               {Array.isArray(itemTOshow) &&
+                itemTOshow.length > 0 &&
                 itemTOshow.map((items, key) => {
                   return (
-                    <DataRow
-                      key={key}
-                      userAddress={items.from}
-                      txnHash={items.hash}
-                      block={items.blockNumber}
-                      fees={items.gas}
-                      time={items.timeStamp}
-                      action={items.functionName.slice(0, 15)}
-                    />
+                    <>
+                      <DataRow
+                        key={key}
+                        userAddress={items.from}
+                        txnHash={items.hash}
+                        block={items.blockNumber}
+                        fees={items.gas}
+                        time={moment(Number(items.timeStamp) * 1000).fromNow()}
+                        action={items.functionName.slice(0, 15)}
+                      />
+                    </>
                   );
                 })}
-            </div>
+            </>
+          ) : (
+            <LoadingDataRows repeat={10} />
           )}
         </TabsContent>
       </Tabs>

@@ -11,8 +11,8 @@ type UserIdBadgeProps = {
 export const platforms = ["twitter", "ens", "github", "farcaster", "lens"];
 
 export function UserIdBadge({ platform, id }: UserIdBadgeProps) {
-  console.log(platform, id);
-  const shortenId = shortenAddress(id, 4);
+  const shortenId = id;
+
   if (platform === "ens") {
     return <Badge>{shortenId}</Badge>;
   } else if (platform === "twitter") {
@@ -42,11 +42,13 @@ export function UserIdBadge({ platform, id }: UserIdBadgeProps) {
         {shortenId}
       </Badge>
     );
-  } else {
+  } else if (platform === "dotbit") {
     return (
-      <Badge>
-        {platform}:{shortenId}
+      <Badge className=" flex items-center justify-center gap-2 text-xs font-light text-white bg-black">
+        {shortenId}
       </Badge>
     );
+  } else {
+    return null;
   }
 }

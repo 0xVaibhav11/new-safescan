@@ -36,7 +36,7 @@ export async function getServiceInfo(
     });
     const serviceInfo: SafeServiceInfoResponse =
       await safeService.getServiceInfo();
-    console.log(serviceInfo);
+
     return serviceInfo;
   } catch (e) {
     console.log(e);
@@ -59,7 +59,7 @@ export async function getSafesByOwner(
       txServiceUrl,
       ethAdapter: ethAdapterOwner1,
     });
-    console.log(safeService);
+
     const safes: OwnerResponse = await safeService.getSafesByOwner(address);
     return safes;
   } catch (e) {
@@ -134,7 +134,7 @@ export async function getDataWithTransactionHash(
     });
     const tx: SafeMultisigTransactionResponse =
       await safeService.getTransaction(safeTxHash);
-    console.log(tx);
+
     return tx;
   } catch (e) {
     console.log(e);
@@ -157,9 +157,9 @@ export async function getSafeInfo(
       txServiceUrl,
       ethAdapter: ethAdapterOwner1,
     });
-    console.log("hello");
+
     const safeInfo: SafeInfoResponse = await safeService.getSafeInfo(address);
-    console.log(safeInfo);
+
     return safeInfo;
   } catch (e) {
     console.log(e);
@@ -313,11 +313,8 @@ export async function PendingTransactionsListWithCurrentNonce(
 
 // return the info about the safe  with all info
 
+// export async function AllTokenForSafe(signer: any, txServiceUrl: string) {}
 export async function AllTokenForSafe(signer: any, txServiceUrl: string) {
-export async function AllTokenForSafe(
-  signer: any,
-  txServiceUrl: string
-) {
   const ethAdapterOwner1 = new EthersAdapter({
     ethers,
     signerOrProvider: signer,

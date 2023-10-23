@@ -24,14 +24,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
-export function getSignerFromPrivateKey(privateKey: string, rpcUrl: string) {
-  const provider = new providers.JsonRpcProvider(rpcUrl);
-  const wallet = new Wallet(privateKey, provider);
-  return wallet;
-}
+import { getSignerFromPrivateKey } from "@/lib/utils";
 
-const tsnHash = ({ params }: { params: { txnHash: string } }) => {
+const DetailsPage = ({ params }: { params: { txnHash: string } }) => {
   const { SerchIndex, setSerchIndex } = useMyContext();
   const [transactionData, setTransactionData] =
     React.useState<SafeMultisigTransactionResponse>();
@@ -69,8 +64,8 @@ const tsnHash = ({ params }: { params: { txnHash: string } }) => {
   }
   const rows = [
     createData(
-      "transection Hash",
-      `${transactionData?.transactionHash}`,
+      "transection Hash     ",
+      transactionData?.transactionHash,
       "A TxHash or transaction hash is a unique 66-characters identifier that is generated whenever a transaction is executed."
     ),
     createData(
@@ -97,7 +92,7 @@ const tsnHash = ({ params }: { params: { txnHash: string } }) => {
 
     createData(
       "Transaction Fee:",
-      transactionData?.fee?.toString(),
+      transactionData?.fee,
       "Amount paid to the miner for processing the transaction."
     ),
     createData("Value:", transactionData?.value, "The value being transacted "),
@@ -117,31 +112,10 @@ const tsnHash = ({ params }: { params: { txnHash: string } }) => {
       "when transaction performed "
     ),
   ];
-  const rows1 = [
-    createData("gas Token", transactionData?.gasToken, ""),
-    createData(
-      "Nonce",
-      transactionData?.nonce,
-      "The status of the transaction."
-    ),
-
-    createData(
-      "operation",
-      transactionData?.operation,
-      "The sending party of the transaction."
-    ),
-
-    createData(
-      "refundReceiver ",
-      transactionData?.refundReceiver,
-      "Amount paid to the miner for processing the transaction."
-    ),
-  ];
-  const [showmore, setshowmore] = React.useState<Boolean>(false);
   return (
     <>
       <div className={styles.main}>
-        <div>
+        {/* <div>
           <DropdownMenu>
             <DropdownMenuTrigger>Select Chain</DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -158,12 +132,57 @@ const tsnHash = ({ params }: { params: { txnHash: string } }) => {
               })}
             </DropdownMenuContent>
           </DropdownMenu>
+        </div> */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "start",
+            marginBottom: "50px",
+          }}
+        >
+          {" "}
+          <div
+            style={{
+              minWidth: "200px",
+              display: "flex",
+              paddingTop: "24px",
+            }}
+          >
+            <h2>Sponsooore</h2>
+          </div>
+          <div
+            style={{
+              width: "728px",
+              height: "90px",
+            }}
+          >
+            <iframe
+              src="https://cdn.coinzilla.io/html_customers/bf133327ba467fd86c34145d9ac8f683/index.html"
+              width="100%"
+              height="100%"
+              style={{
+                border: "none",
+                margin: "0 !important",
+                padding: "0 !important",
+              }}
+            >
+              ad
+            </iframe>
+          </div>
         </div>
         <div className="space-y-8">
           {rows.map((item, a) => (
-            <div className={styles.datadiv} key={a}>
-              <div className={styles.row}>
-                <div className={styles.column}>
+            <div key={a}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "start",
+                  gap: "100px",
+                }}
+              >
+                <div style={{ minWidth: "400px" }}>
                   <div style={{ display: "flex", flexDirection: "row" }}>
                     <TooltipProvider>
                       <Tooltip>
@@ -179,54 +198,15 @@ const tsnHash = ({ params }: { params: { txnHash: string } }) => {
                     <h2> {item.name}</h2>
                   </div>
                 </div>
-                <div className={styles.column}>
+                <div style={{}}>
                   <h2>{item.data}</h2>
                 </div>
               </div>
             </div>
           ))}
         </div>
-
-        <div className="Details">
-          {showmore &&
-            rows1.map((item, a) => (
-              <div className={styles.datadiv} key={a}>
-                <div className={styles.row}>
-                  <div className={styles.column}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger className=" mr-2">
-                            <GoQuestion />
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>{item.toolpick}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-
-                      <h2> {item.name}</h2>
-                    </div>
-                  </div>
-                  <div className={styles.column}>
-                    <h2>{item.data}</h2>
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-        <div className={styles.ShowMoreButton}>
-          <Button
-            onClick={() => {
-              setshowmore(!showmore);
-            }}
-            className="bg-[#202020] text-[#707070] m-4"
-          >
-            {showmore ? " Show Less ..." : "Show More... "}
-          </Button>
-        </div>
       </div>
     </>
   );
 };
-export default tsnHash;
+export default DetailsPage;

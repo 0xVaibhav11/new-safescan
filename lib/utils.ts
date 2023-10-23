@@ -22,3 +22,15 @@ export function shortenAddress(
   if (chars === 4) return `${address.slice(0, 4)}...${address.slice(-4)}`;
   return `${address.slice(0, 20)}...${address.slice(-4)}`;
 }
+
+import { Alchemy, Network } from "alchemy-sdk";
+export async function getWalletAddrByEns({ ensName }: { ensName: string }) {
+  const config = {
+    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_KEY,
+    network: Network.ETH_MAINNET,
+  };
+  const alchemy = new Alchemy(config);
+  // let addr = "";
+  const addr = await alchemy.core.resolveName(ensName);
+  return addr;
+}

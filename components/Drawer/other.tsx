@@ -18,65 +18,90 @@ export default function DialogCloseButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Testing Data </Button>
+        <Button variant="outline">Share</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
-        <DialogHeader className="text-red-500 text-lg ">
-          {" "}
-          please Use Goerli for testing all Data
-        </DialogHeader>
         <DialogHeader>
-          <DialogTitle>Lens Profile</DialogTitle>
+          <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
-            Copy this to serch through Lens Profile
+            Anyone who has this link will be able to view this.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              lens :
+            </Label>
             <Input id="link" defaultValue="vitalik.lens" readOnly />
           </div>
+          <Button type="submit" size="sm" className="px-3">
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
         </div>
         <DialogHeader>
-          <DialogTitle>Twitter Profile</DialogTitle>
+          <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
-            Copy this to serch through Twitter Profile
+            Anyone who has this link will be able to view this.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              Twitter :
+            </Label>
             <Input id="link" defaultValue="@suji_yan" readOnly />
           </div>
+          <Button type="submit" size="sm" className="px-3">
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
         </div>
         <DialogHeader>
-          <DialogTitle>Safe Address</DialogTitle>
+          <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
-            Copy this for testing our Address Profile feature
+            Anyone who has this link will be able to view this.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              safe Address
+            </Label>
             <Input
               id="link"
               defaultValue="0xa43624b7472c37B1E1884645a3D04710afCD8eB5"
               readOnly
             />
           </div>
+          <Button type="submit" size="sm" className="px-3">
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
         </div>
         <DialogHeader>
-          <DialogTitle> Safe Transaction hash</DialogTitle>
+          <DialogTitle>Share link</DialogTitle>
           <DialogDescription>
-            {" "}
-            Copy this for testing transaction hash
+            Anyone who has this link will be able to view this.
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center space-x-2">
           <div className="grid flex-1 gap-2">
+            <Label htmlFor="link" className="sr-only">
+              transaction hash
+            </Label>
+            transaction hash :
+            0x492e1f5905fa51b38533e99fd6aa431915c40c09e9df4fce40b3d64539ba4893
             <Input
               id="link"
               defaultValue="0x492e1f5905fa51b38533e99fd6aa431915c40c09e9df4fce40b3d64539ba4893"
               readOnly
             />
           </div>
+          <Button type="submit" size="sm" className="px-3">
+            <span className="sr-only">Copy</span>
+            <Copy className="h-4 w-4" />
+          </Button>
         </div>
         <DialogFooter className="sm:justify-start">
           <DialogClose asChild>

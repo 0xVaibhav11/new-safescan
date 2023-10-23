@@ -67,6 +67,18 @@ interface TxData {
 // value: "100000000000000000"
 
 const DetailsPage = ({ params }: { params: { SinglePage: string } }) => {
+  // const [transactionData, setTransactionData] = React.useState<Transaction>();
+  // async function Fetchtransaction() {
+  //     const txhash = data.slice(2);
+  //     const transaction = await fetchTransaction({
+  //       hash: `0x${txhash}`,
+  //     });
+  //     setTransactionData(transaction);
+  //     console.log(transaction);
+  //   }
+  //   React.useEffect(() => {
+  //     Fetchtransaction();
+  //   }, []);
   const data = params.SinglePage;
   function createData(name: any, data: any, toolpick: any) {
     return { name, data, toolpick };
